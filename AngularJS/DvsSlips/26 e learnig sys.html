@@ -1,0 +1,116 @@
+<html>
+   <head>
+      <title>Angular JS Views</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js">
+      </script>
+   </head>
+   
+   <body>
+      <h1 style="color:blue" align="center">E-learning system</h1>
+      <div ng-app = "mainApp">
+         <ol>
+		 <li><a href = "#SI">Student info</a></li>
+		 <li><a href = "#F">Faculty</a></li>
+		 <li><a href = "#T">Timetable</a></li>
+		 <li><a href = "#S">Syllabus</a></li>
+		 <li><a href = "#A">About us</a></li>
+		 </ol>
+         <div ng-view></div>
+         
+         <script type = "text/ng-template" id = "SI.htm">
+            <h2>This page shows student inormation</h2>
+            {{message}}
+			<div ng-init="myvar='si.jpg'">
+	        <img ng-src="{{myvar}}" height="300" width="150">
+	        </div>
+         </script>
+         
+        <script type = "text/ng-template" id = "F.htm">
+            <h2> This page shows faculty information</h2>
+            {{message}}
+			<div ng-init="myvar='f.jpg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+		 
+		 <script type = "text/ng-template" id = "T.htm">
+            <h2> Timetable of  SYBBA-CA</h2>
+            {{message}}
+			<div ng-init="myvar='tt.jpg'">
+	        <img ng-src="{{myvar}}" height="300" width="600">
+	        </div>
+         </script>
+		 
+		 <script type = "text/ng-template" id = "S.htm">
+            <h2> Syllabus of SYBBA-CA</h2>
+            {{message}}
+			<div ng-init="myvar='sl.jpg'">
+	        <img ng-src="{{myvar}}" height="400" width="200">
+	        </div>
+         </script>
+		 
+		 <script type = "text/ng-template" id = "A.htm">
+            <h2> This is an E-learning system </h2>
+            {{message}}
+			<div ng-init="myvar='a.jpeg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+      </div>
+      
+      <script>
+         var mainApp = angular.module("mainApp", ['ngRoute']);
+         mainApp.config(['$routeProvider', function($routeProvider) {
+            $routeProvider
+            
+            .when('/SI', {
+               templateUrl: 'SI.htm',
+               controller: 'sictrl'
+            })
+            .when('/F', {
+               templateUrl: 'F.htm',
+               controller: 'fctrl'
+            })
+			
+		    .when('/T', {
+               templateUrl: 'T.htm',
+               controller: 'tctrl'
+            })
+			
+			.when('/S', {
+               templateUrl: 'S.htm',
+               controller: 'sctrl'
+            })
+			
+			.when('/A', {
+               templateUrl: 'A.htm',
+               controller: 'actrl'
+            })
+			
+            .otherwise({
+               redirectTo: '/addStudent'
+            });
+         }]);
+         mainApp.controller('sictrl', function($scope) {
+            $scope.message = "MES senior college student data";
+			
+         });
+         mainApp.controller('fctrl', function($scope) {
+            $scope.message = "MES senior college faculty data";
+         });
+		 
+		 mainApp.controller('tctrl', function($scope) {
+            $scope.message = "MES senior college timetable data";
+         });
+		 mainApp.controller('sctrl', function($scope) {
+            $scope.message = "MES senior college syllabus data";
+         });
+		 mainApp.controller('actrl', function($scope) {
+            $scope.message = "MES senior college";
+         });
+		 
+      </script>
+      
+   </body>
+</html>

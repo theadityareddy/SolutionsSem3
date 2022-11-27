@@ -1,0 +1,116 @@
+<html>
+   <head>
+      <title>Angular JS Views</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js">
+      </script>
+   </head>
+   
+   <body>
+      <h2>MY KITCHEN!</h2>
+      <div ng-app = "mainApp">
+         <ol>
+		 <li><a href = "#R1">Recipe 1</a></li>
+		 <li><a href = "#R2">Recipe 2</a></li>
+		 <li><a href = "#R3">Recipe 3</a></li>
+		 <li><a href = "#R4">Recipe 4</a></li>
+		 <li><a href = "#R5">Recipe 5</a></li>
+		 </ol>
+         <div ng-view></div>
+         
+         <script type = "text/ng-template" id = "R1.htm">
+            <h2> Recipe 1</h2>
+            {{message}}
+			<div ng-init="myvar='maggi.jpeg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+         
+        <script type = "text/ng-template" id = "R2.htm">
+            <h2> Recipe 2</h2>
+            {{message}}
+			<div ng-init="myvar='pbm.jpeg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+		 
+		 <script type = "text/ng-template" id = "R3.htm">
+            <h2> Recipe 3</h2>
+            {{message}}
+			<div ng-init="myvar='pb.jpeg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+		 
+		 <script type = "text/ng-template" id = "R4.htm">
+            <h2> Recipe 4</h2>
+            {{message}}
+			<div ng-init="myvar='pc.jpeg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+		 
+		 <script type = "text/ng-template" id = "R5.htm">
+            <h2> Recipe 5</h2>
+            {{message}}
+			<div ng-init="myvar='pz.jpeg'">
+	        <img ng-src="{{myvar}}">
+	        </div>
+         </script>
+      </div>
+      
+      <script>
+         var mainApp = angular.module("mainApp", ['ngRoute']);
+         mainApp.config(['$routeProvider', function($routeProvider) {
+            $routeProvider
+            
+            .when('/R1', {
+               templateUrl: 'R1.htm',
+               controller: 'r1ctrl'
+            })
+            .when('/R2', {
+               templateUrl: 'R2.htm',
+               controller: 'r2ctrl'
+            })
+			
+		    .when('/R3', {
+               templateUrl: 'R3.htm',
+               controller: 'r3ctrl'
+            })
+			
+			.when('/R4', {
+               templateUrl: 'R4.htm',
+               controller: 'r4ctrl'
+            })
+			
+			.when('/R5', {
+               templateUrl: 'R5.htm',
+               controller: 'r5ctrl'
+            })
+			
+            .otherwise({
+               redirectTo: '/addStudent'
+            });
+         }]);
+         mainApp.controller('r1ctrl', function($scope) {
+            $scope.message = "Maggi";
+			
+         });
+         mainApp.controller('r2ctrl', function($scope) {
+            $scope.message = "Paneer butter masala";
+         });
+		 
+		 mainApp.controller('r3ctrl', function($scope) {
+            $scope.message = "Pavbhaji";
+         });
+		 mainApp.controller('r4ctrl', function($scope) {
+            $scope.message = "Paneer chilli";
+         });
+		 mainApp.controller('r5ctrl', function($scope) {
+            $scope.message = "Pizza";
+         });
+		 
+      </script>
+      
+   </body>
+</html>
